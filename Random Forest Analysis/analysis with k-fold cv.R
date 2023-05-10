@@ -182,8 +182,8 @@ f_vec <- apply(f_mat2,1,mean)
 perf.df <- data.frame('perc_feat' = perc_feat, 
                       'AUC' = result[,1],
                       'F_scores' = result[,2])
-write.csv(perf.df, 'performance-kcv.csv',
-          row.names = F)
+# write.csv(perf.df, 'performance-kcv.csv',
+#           row.names = FALSE)
 
 auc_perc <- ggplot(data = perf.df) +
   geom_line(mapping = aes(x = perc_feat, y = AUC)) +
