@@ -96,9 +96,9 @@ for(i in 1:k)
 {
   if(i ==1)
   {
-    plot(ROC_rf[[i]], col = 'red', main = 'ROC')
+    plot(ROC_rf[[i]], col = i, main = 'ROC')
   }else{
-    plot(ROC_rf[[i]], col = 'red', add = TRUE)
+    plot(ROC_rf[[i]], col = i, add = TRUE)
   }
 }
 legend_text <- paste0('RF Iteration: ', 1:5)
@@ -199,7 +199,7 @@ fsc_perc <- ggplot(data = perf.df) +
 #ggsave('F-score.png')
 
 auc_perc/fsc_perc
-n_feat <- round(0.25*(ncol(tab.work2)-1))
+n_feat <- round(0.23*(ncol(tab.work2)-1))
 imp.feat <- names(round(imps[1:n_feat],2))
 #-------------------------------------------------------------------------------
 tab.top.feat <- train.data[,c('y', imp.feat)]
