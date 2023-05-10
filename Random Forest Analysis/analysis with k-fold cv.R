@@ -184,7 +184,8 @@ perf.df <- data.frame('perc_feat' = perc_feat,
                       'F_scores' = result[,2])
 # write.csv(perf.df, 'performance-kcv.csv',
 #           row.names = FALSE)
-
+perf.df <- read.csv('performance-kcv.csv',
+                    header = TRUE)
 auc_perc <- ggplot(data = perf.df) +
   geom_line(mapping = aes(x = perc_feat, y = AUC)) +
   scale_x_continuous(breaks = seq(0.05, 0.6, 0.02)) +
