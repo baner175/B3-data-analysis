@@ -8,7 +8,13 @@ library(patchwork)
 library(vip)
 # library(randomForest)
 
-source('Data Preprocessing.R')
+# source('Data Preprocessing.R')
+
+train.data <- read.csv('Training Data.csv', header = TRUE)
+val.data <- read.csv('Validation Data.csv', header = TRUE)
+
+train.data$y <- as.factor(train.data$y)
+val.data$y <- as.factor(val.data$y)
 
 rf_full <- ranger(y~., data= train.data,
                   importance="impurity", probability = TRUE,
@@ -17,7 +23,7 @@ imps = sort(rf_full$variable.importance, decreasing = TRUE)
 
 top_x <- function(p, lift)
 {
-  n_feat <- round(p*(ncol(tab.work2)-1))
+  n_feat <- round(p*(ncol(train.data)-1))
   imp.feat <- names(round(imps[1:n_feat],2))
   train.temp <- train.data[,c('y', imp.feat)]
   rfmod = ranger(y~., data=train.temp,
